@@ -1,0 +1,21 @@
+=== history-ring.el ===
+this adds history to a prompt in emacs
+
+=== usage ===
+first, put (require 'history-ring) and (history-ring-init) in your
+code. then make a function something like:
+
+(defun history-prev ()
+  (interactive)
+  (history-ring-access 1 STARTPOINT ENDPOINT))
+
+where START- and ENDPOINT is the position in the buffer where the
+prompt is. then add to the function that sends the command, message,
+or wathever your prompt does, the following:
+
+(history-ring-add MSG)
+
+where MSG is the text to be inserted into the history-ring
+
+=== contact ===
+mang@mang.se

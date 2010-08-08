@@ -1,11 +1,4 @@
 ;; history-ring.el
-;; v0.1
-;;
-;; this adds history to a prompt
-;; first run history-ring-init, then make a function something like:
-;;  (defun history-prev ()
-;;    (interactive)
-;;    (history-ring-access 1 STARTPOINT ENDPOINT))
 
 (defun history-ring-init ()
   "initialize a history ring for current buffer"
@@ -29,8 +22,8 @@ element in ring
 
 BEG and END should be the beginnig and ending point of prompt"
 
-  (when (not tmp-history-ring-list)
-    (setq tmp-history-ring-list (copy-list history-ring-list))
+  (when (equal (length history-ring-list)
+               (length tmp-history-ring-list))
     (push "" tmp-history-ring-list))
   (let ((current-line (buffer-substring beg end)))
     (when (and (nth (+ history-pos elem) tmp-history-ring-list)
@@ -44,6 +37,8 @@ BEG and END should be the beginnig and ending point of prompt"
   "add NEW to history ring"
   (unless (equal new (car history-ring-list))
     (push new history-ring-list))
-  (setq tmp-history-ring-list '()))
+  (setq tmp-history-ring-list '())
+  (setq history-pos 0)
+  (setq tmp-history-ring-list (copy-list history-ring-list)))
 
 (provide 'history-ring)
