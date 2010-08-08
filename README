@@ -1,6 +1,10 @@
 === history-ring.el ===
 this adds history to a prompt in emacs
 
+until you exit/submit the prompt, history-ring also remembers any
+edits you do to the lines, much like bash/zsh. it does not store
+identical lines straight after each other.
+
 === usage ===
 first, put (require 'history-ring) and (history-ring-init) in your
 code. then make a function something like:
@@ -19,3 +23,4 @@ where MSG is the text to be inserted into the history-ring
 
 === contact ===
 mang@mang.se
+
